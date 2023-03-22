@@ -8,14 +8,17 @@ import openai
 app = Flask(__name__)
 
 # Line bot 設定
-CHANNEL_ACCESS_TOKEN = 'kD/dPujEGje9QnQAVcqTFID55LvykQLjkZZ20Hu9BAh4qqZEH9zxUsoKbR6J2+Twq844syLSak60UUYJF3blJn+98fULP4tQrXCttjR/4ojK3W7HepKxeB+3wbSO+PKZTPdTP44P5yR8pW/eslqzWgdB04t89/1O/w1cDnyilFU='
-CHANNEL_SECRET = 'dcf6386a1de1d3109c596e81eb3c3055'
+
+CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN')
+CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
 # OpenAI 設定
-openai.api_key = "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"
+# OpenAIkey = os.getenv('OpenAIkey')
+
+openai.api_key = OpenAIkey
 model_engine = "davinci"
 
 def generate_response(user_message):
