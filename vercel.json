@@ -1,0 +1,8 @@
+{
+  "builds": [
+    { "src":"api/linegpt.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "src": "/(.*)",, "dest": "api/linegpt.py" }
+  ]
+}
