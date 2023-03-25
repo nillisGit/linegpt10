@@ -9,17 +9,12 @@ import openai
 #load_dotenv()
 app = Flask(__name__)
 
-# Line bot 設定
-
-CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN')
-CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
+CHANNEL_ACCESS_TOKEN = os.environ.get('CHANNEL_ACCESS_TOKEN')
+CHANNEL_SECRET = os.environ.get('CHANNEL_SECRET')
+OpenAIkey = os.environ.get('OpenAIkey')
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
-
-# OpenAI 設定
-OpenAIkey = os.getenv('OpenAIkey')
-
 openai.api_key = OpenAIkey
 model_engine = "davinci"
 
