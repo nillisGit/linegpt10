@@ -9,16 +9,14 @@ app = Flask(__name__)
 
 
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
-
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
-
 openai.api_key = os.getenv('OpenAIkey')
-model_engine = "davinci"
+
 
 def generate_response(user_message):
     prompt = (f"The following is a conversation with a user about {user_message}. The user says:") # 設定 GPT-3 問題
     response = openai.Completion.create(
-        engine=model_engine,
+        engine="davinci",
         prompt=prompt,
         max_tokens=1024,
         n=1,
