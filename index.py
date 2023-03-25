@@ -9,12 +9,10 @@ app = Flask(__name__)
 
 k1 = os.getenv('CHANNEL_ACCESS_TOKEN')
 k2 = os.getenv('CHANNEL_SECRET')
+k3 = os.getenv('OpenAIkey')
 
 line_bot_api = LineBotApi(k1)
 handler = WebhookHandler(k2)
-
-# OpenAI 設定
-k3 = os.getenv('OpenAIkey')
 
 openai.api_key = k3
 model_engine = "davinci"
