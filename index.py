@@ -9,13 +9,12 @@ import openai
 #load_dotenv()
 app = Flask(__name__)
 
-CHANNEL_ACCESS_TOKEN = os.environ.get('CHANNEL_ACCESS_TOKEN')
-CHANNEL_SECRET = os.environ.get('CHANNEL_SECRET')
-OpenAIkey = os.environ.get('OpenAIkey')
 
-line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(CHANNEL_SECRET)
-openai.api_key = OpenAIkey
+
+
+line_bot_api = LineBotApi(os.environ.get('CHANNEL_ACCESS_TOKEN'))
+handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
+openai.api_key = os.environ.get('OpenAIkey')
 model_engine = "davinci"
 
 def generate_response(user_message):
