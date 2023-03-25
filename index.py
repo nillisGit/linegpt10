@@ -1,12 +1,12 @@
-import os
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+import os
 import openai
 
-app = Flask(__name__)
 
+app = Flask(__name__)
 k1 = os.getenv('CHANNEL_ACCESS_TOKEN')
 k2 = os.getenv('CHANNEL_SECRET')
 k3 = os.getenv('OpenAIkey')
@@ -34,7 +34,8 @@ def generate_response(user_message):
 
 @app.route('/')
 def home():
-    return "Home base"
+    return 'H3small!'
+
 
 @app.route("/Webhook", methods=["POST"])
 def callback():
@@ -53,4 +54,4 @@ def handle_text_message(event):
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_message))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run()
