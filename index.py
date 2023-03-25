@@ -11,10 +11,9 @@ app = Flask(__name__)
 
 
 
-
-line_bot_api = LineBotApi(os.environ.get('CHANNEL_ACCESS_TOKEN'))
-handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
-openai.api_key = os.environ.get('OpenAIkey')
+line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
+handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
+openai.api_key = os.getenv('OpenAIkey')
 model_engine = "davinci"
 
 def generate_response(user_message):
