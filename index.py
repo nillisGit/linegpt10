@@ -20,7 +20,7 @@ model_engine = "davinci"
 
 
 def generate_response(user_message):
-    prompt = (f"The following is a conversation with a user about {user_message}. The user says:") # 設定 GPT-3 問題
+    prompt = (f"The following is a conversation with a user about {user_message}. The user says:") 
     response = openai.Completion.create(
         engine="davinci",
         prompt=prompt,
