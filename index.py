@@ -7,9 +7,9 @@ import openai
 
 
 app = Flask(__name__)
-k1 = os.getenv('CHANNEL_ACCESS_TOKEN')
-k2 = os.getenv('CHANNEL_SECRET')
-k3 = os.getenv('OpenAIkey')
+k1 = os.getenv('token')
+k2 = os.getenv('cs')
+k3 = os.getenv('aikey')
 
 line_bot_api = LineBotApi(k1)
 handler = WebhookHandler(k2)
