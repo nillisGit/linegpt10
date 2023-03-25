@@ -7,7 +7,17 @@ import openai
 
 app = Flask(__name__)
 
+CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN')
+CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
 
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(CHANNEL_SECRET)
+
+# OpenAI 設定
+OpenAIkey = os.getenv('OpenAIkey')
+
+openai.api_key = OpenAIkey
+model_engine = "davinci"
 
 
 
