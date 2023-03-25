@@ -14,7 +14,7 @@ openai.api_key = os.getenv('OpenAIkey')
 
 
 def generate_response(user_message):
-    prompt = (f"The following is a conversation with a user about {user_message}. The user says:") # 設定 GPT-3 問題
+    prompt = (f"The following is a conversation with a user about {user_message}. The user says:") 
     response = openai.Completion.create(
         engine="davinci",
         prompt=prompt,
@@ -23,7 +23,7 @@ def generate_response(user_message):
         stop=None,
         temperature=0.5,
     )
-    message = response.choices[0].text.strip() # 獲得 GPT-3 回答
+    message = response.choices[0].text.strip() 
     return message
 
 @app.route('/')
@@ -43,9 +43,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
     user_message = event.message.text
-    print("Received message: ", user_message) # 印出接收到的訊息
     reply_message = generate_response(user_message)
-    print("Reply message: ", reply_message) # 印出回應的訊息
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_message))
 
 if __name__ == "__main__":
