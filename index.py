@@ -8,12 +8,11 @@ import openai
 app = Flask(__name__)
 
 
-line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
-handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
-openai.api_key = os.getenv('OpenAIkey')
 
 
-def generate_response(user_message):
+
+def 
+(user_message):
     prompt = (f"The following is a conversation with a user about {user_message}. The user says:") 
     response = openai.Completion.create(
         engine="davinci",
