@@ -14,9 +14,9 @@ line_bot_api = LineBotApi(k1)
 handler = WebhookHandler(k2)
 
 # OpenAI 設定
-OpenAIkey = os.getenv('OpenAIkey')
+k3 = os.getenv('OpenAIkey')
 
-openai.api_key = OpenAIkey
+openai.api_key = k3
 model_engine = "davinci"
 
 
