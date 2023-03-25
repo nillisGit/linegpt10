@@ -4,7 +4,9 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import openai
+#from dotenv import load_dotenv
 
+#load_dotenv()
 app = Flask(__name__)
 
 # Line bot 設定
@@ -16,7 +18,7 @@ line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
 # OpenAI 設定
-# OpenAIkey = os.getenv('OpenAIkey')
+OpenAIkey = os.getenv('OpenAIkey')
 
 openai.api_key = OpenAIkey
 model_engine = "davinci"
@@ -34,8 +36,14 @@ def generate_response(user_message):
     message = response.choices[0].text.strip() # 獲得 GPT-3 回答
     return message
 
+
+@app.route('/')
+def home():
+    return "Home base"
+
+
 # 設定 Line bot 的 Webhook
-@app.route("/callback", methods=["POST"])
+@app.route("/Webhook", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
     body = request.get_data(as_text=True)
@@ -54,4 +62,5 @@ def handle_text_message(event):
 
 # 啟動 Flask
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    #app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run()
