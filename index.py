@@ -7,14 +7,14 @@ import openai
 
 app = Flask(__name__)
 
-print('1')
+
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
-print('2')
+
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
-print('3')
+
 openai.api_key = os.getenv('OpenAIkey')
 model_engine = "davinci"
-print('4')
+
 def generate_response(user_message):
     prompt = (f"The following is a conversation with a user about {user_message}. The user says:") # 設定 GPT-3 問題
     response = openai.Completion.create(
