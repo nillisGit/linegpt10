@@ -18,7 +18,7 @@ model_engine = "davinci"
 
 @app.route('/')
 def home():
-    return "ENT01ER" + os.getenv('CHANNEL_ACCESS_TOKEN')
+    return 'Bearer ' + mm
 
 # 啟動 Flask
 if __name__ == "__main__":
