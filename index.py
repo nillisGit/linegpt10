@@ -8,10 +8,6 @@ import openai
 
 app = Flask(__name__)
 
-CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
-handler = WebhookHandler(CHANNEL_SECRET)
-print(CHANNEL_SECRET)
-
 
 @app.route('/')
 def home():
