@@ -8,13 +8,13 @@ import openai
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi(os.getenv("LINETOKEN"))
-
+CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
+print(CHANNEL_SECRET)
 
 
 @app.route('/')
 def home():
-    return 'H3small!'
+    return CHANNEL_SECRET
 
 
 if __name__ == "__main__":
