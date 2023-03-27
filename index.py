@@ -8,7 +8,7 @@ import openai
 
 app = Flask(__name__)
 
-
+line_bot_api = LineBotApi(os.getenv("token"))
 
 
 
