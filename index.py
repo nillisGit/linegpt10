@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return CHANNEL_SECRET
+    return os.getenv("LINE_CHANNEL_SECRET"))
 
 
 if __name__ == "__main__":
