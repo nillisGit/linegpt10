@@ -9,6 +9,7 @@ import openai
 app = Flask(__name__)
 
 CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
+handler = WebhookHandler(CHANNEL_SECRET)
 print(CHANNEL_SECRET)
 
 
