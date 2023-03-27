@@ -39,12 +39,12 @@ def callback():
     signature = request.headers["X-Line-Signature"]
     body = request.get_data(as_text=True)
     try:
-        handler.handle(body, signature)
+        hh.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
     return "OK"
 
-@handler.add(MessageEvent, message=TextMessage)
+@hh.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
     user_message = event.message.text
     reply_message = generate_response(user_message)
