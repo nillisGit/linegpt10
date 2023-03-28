@@ -4,9 +4,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import openai
-#from dotenv import load_dotenv
 
-#load_dotenv()
 app = Flask(__name__)
 
 
@@ -14,7 +12,7 @@ mm= os.getenv('CHANNEL_ACCESS_TOKEN')
 line_bot_api = LineBotApi('Bearer ' + mm)
 hh = WebhookHandler(os.getenv("CHANNEL_SECRET"))
 openai.api_key = os.getenv('OpenAIkey')
-model_engine = "davinci"
+
 
 def generate_response(user_message):
     prompt = (f"The following is a conversation with a user about {user_message}. The user says:") 
@@ -35,7 +33,7 @@ def home():
 
 
 @app.route("/webhook", methods=["POST"])
-def callback():
+def webhook():
     signature = request.headers["X-Line-Signature"]
     body = request.get_data(as_text=True)
     try:
@@ -47,8 +45,8 @@ def callback():
 @hh.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
     user_message = event.message.text
-    reply_message = generate_response(user_message)
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_message))
+    reply_message_text = generate_response(user_message)
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_message_text))
 
 if __name__ == "__main__":
     app.run()
