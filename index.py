@@ -36,6 +36,8 @@ def home():
 def webhook():
     signature = request.headers["X-Line-Signature"]
     body = request.get_data(as_text=True)
+    if body == "{}":
+        return "OK"
     try:
         hh.handle(body, signature)
     except InvalidSignatureError:
