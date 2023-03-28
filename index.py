@@ -34,15 +34,15 @@ def home():
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    signature = request.headers["X-Line-Signature"]
+    signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
-    if body == "{}":
-        return "OK"
+    app.logger.info("Request body: " + body)
+    # handle webhook body
     try:
-        hh.handle(body, signature)
+        line_handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
-    return "OK" 
+    return 'OK'
 
 
 @hh.add(MessageEvent, message=TextMessage)
