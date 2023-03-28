@@ -40,7 +40,8 @@ def webhook():
         hh.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
-    return Flask.Response(response='OK', status=200)
+    return "OK" 
+
 
 @hh.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
