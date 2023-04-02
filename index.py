@@ -40,7 +40,8 @@ def handle_text_message(event):
         temperature=0.5,
     )
     gptreply = response.choices[0].text.strip()     
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=gptreply))
+    #line_bot_api.reply_message(event.reply_token, TextSendMessage(text=gptreply))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text="test reply"))    
 
 if __name__ == "__main__":
     app.run()
