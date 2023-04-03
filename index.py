@@ -7,23 +7,25 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
-handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
+hhan = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
 @app.route('/')
 def home():
     return 'H3small!'
+
+
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
     try:
-        handler.handle(body, signature)
+        hhan.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
     return 'OK'
 
-@handler.add(MessageEvent, message=TextMessage)
+@hhan.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text='test reply'))
 
