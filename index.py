@@ -28,8 +28,8 @@ def webhook():
 
 @hh.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
-    user_message = event.message.text
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Reply:'+ user_message))
+    #user_message = event.message.text
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Reply:'+ 'go'))
 
 
 if __name__ == '__main__':
