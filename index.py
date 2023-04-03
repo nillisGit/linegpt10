@@ -30,11 +30,13 @@ def webhook():
 @hh.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
     user_message = event.message.text
+    ######
+    print(user_message)
     prompt = (f"Message==> {user_message}. GPT replys:") 
     response = openai.Completion.create(
         engine="davinci",
         prompt=prompt,
-        max_tokens=1024,
+        max_tokens=200,
         n=1,
         stop=None,
         temperature=0.5,
