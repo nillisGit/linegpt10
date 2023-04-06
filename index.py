@@ -31,15 +31,18 @@ def webhook():
 def handle_text_message(event):
     user_message = event.message.text
     prompt = (f"Message==> {user_message}. GPT replys:") 
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=prompt,
-        max_tokens=200,
-        n=1,
-        stop=None,
-        temperature=0.5,
+    try:
+        response = openai.Completion.create(
+            engine="davinci",
+            prompt=prompt,
+            max_tokens=200,
+            n=1,
+            stop=None,
+            temperature=0.5,
         )
-    gptreply = response.choices[0].text.strip()     
+        gptreply = response.choices[0].text.strip()
+    except openai.error.RateLimitError:
+        gptreply = "EXCEED QUOTA, OpenAI charges"
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Reply:'+ gptreply))
 
 
