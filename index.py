@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 hh = WebhookHandler(os.getenv("CHANNEL_SECRET"))
-openai.api_key = os.getenv('OpenAIkey')
+#openai.api_key = os.getenv('OpenAIkey')
 
 @app.route('/')
 def home():
